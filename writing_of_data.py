@@ -4,6 +4,7 @@ import cleaning_of_data
 import json
 from collections import defaultdict
 import reading_of_data
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 def create_tsv_files(df, folder_name):  # this function will be used to crete tsv files
@@ -116,3 +117,55 @@ def output_results(folder_name, inter):
     df.reset_index(drop=True, inplace=True)
     # print(df.to_string())
     return df
+
+
+# 3.2 creating cosine tfIdf score and saving it to file
+
+
+def create_tfidf_inverted_index_file(df_length, folder_name, dic_file_name):
+    # And an empty dictionary for storage the words for each document
+    tfidf = TfidfVectorizer()
+    dictionary = {}
+
+    # For every file...
+    for i in range(df_length):
+        doc = pd.read_csv(folder_name + '/doc_%s.tsv' % i, sep='\t')
+        print("creating inverted index tfidf:" + str(i))
+
+        # Concatenate the description and title in a string
+        words = doc["description"][0] + doc["title"][0]
+
+        words = cleaning_of_data.remove_extras_from_query(words)
+
+        # Storage the words in vocabulary set
+        dictionary.update({i: words})
+
+    # As a result of this problem, we have a vocabulary set with unique words
+    # an a dictionary, with key: number of the document values: a list of all the words (filtered) in the Airbnb post
+
+    # Create the index
+    inverted_index = defaultdict(str)
+
+    for key, value in dictionary.items():
+
+        list_of_words = list(value)
+        voc_dic = reading_of_data.get_vocabulary_dic()  # get a dictionary from dictionary file
+        sentence = " ".join(list_of_words)  # joining the sentence to use it later
+        tfidf_scores = tfidf.fit_transform([sentence])
+        feature_names = tfidf.get_feature_names()
+        for col in tfidf_scores.nonzero()[1]:
+            word_item = feature_names[col]
+            tfidf_score = tfidf_scores[0, col]
+            # get term id from voc_dic
+            term_id = list(voc_dic.keys())[list(voc_dic.values()).index(word_item)]
+            if str(term_id) in inverted_index:
+                inverted_index[str(term_id)].append({key: tfidf_score})
+            else:
+                inverted_index[str(term_id)] = [{key: tfidf_score}]
+
+    # saving it to Json file
+    with open(dic_file_name, 'w') as fp:
+        json.dump(inverted_index, fp, sort_keys=True, indent=4)
+
+    return inverted_index
+

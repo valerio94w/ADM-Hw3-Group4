@@ -16,3 +16,12 @@ def get_inverted_index_file(file_name='inverted_index.json"'):  # reading invert
         data = json.load(fp)
     return data
 
+
+def get_tfidf_inverted_index_file(file_name='inverted_index_tfidf.json"'):  # reading tfidf inverted_index dictionary file
+
+    # Create an empty set for the vocabulary
+    with open(file_name, 'r') as fp:
+        data = json.load(fp)
+    return data
+
+
