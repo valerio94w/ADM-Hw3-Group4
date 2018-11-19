@@ -118,13 +118,12 @@ def output_results(folder_name, inter):
     # print(df.to_string())
     return df
 
-
 # 3.2 creating cosine tfIdf score and saving it to file
 
 
 def create_tfidf_inverted_index_file(df_length, folder_name, dic_file_name):
     # And an empty dictionary for storage the words for each document
-    tfidf = TfidfVectorizer()
+
     dictionary = {}
 
     # For every file...
@@ -151,6 +150,7 @@ def create_tfidf_inverted_index_file(df_length, folder_name, dic_file_name):
         list_of_words = list(value)
         voc_dic = reading_of_data.get_vocabulary_dic()  # get a dictionary from dictionary file
         sentence = " ".join(list_of_words)  # joining the sentence to use it later
+        tfidf = TfidfVectorizer()
         tfidf_scores = tfidf.fit_transform([sentence])
         feature_names = tfidf.get_feature_names()
         for col in tfidf_scores.nonzero()[1]:
@@ -168,4 +168,36 @@ def create_tfidf_inverted_index_file(df_length, folder_name, dic_file_name):
         json.dump(inverted_index, fp, sort_keys=True, indent=4)
 
     return inverted_index
+
+
+def output_results_cosine_similarity(folder_name, inter):
+    if inter == set():
+        print("No results were found with those characteristics")
+        return
+    else:
+        index = 0
+        keys = list(inter.keys())
+        values = list(inter.values())
+        cols_of_interest = ["Title", "Description", "City", "Url"]
+        if len(keys) > 0:
+            doc_id = int(keys[0])
+            df = pd.read_csv(folder_name + "/doc_%s.tsv" % doc_id, sep="\t")
+            df = df.rename(index=str,
+                           columns={'title': 'Title',
+                                    "description": "Description", "city": "City", "url": 'Url'})
+            df = df.filter(cols_of_interest, axis=1)
+            df["Similarity"] = values[0]
+        index += 1
+        for i in range(1, len(keys)):
+            doc_id = int(keys[i])
+            cols_of_interest = ["Title", "Description", "City", "Url"]
+            file = pd.read_csv(folder_name + "/doc_%s.tsv" % doc_id, sep="\t")
+            file = file.rename(index=str, columns={'title': 'Title',
+                                                 "description": "Description", "city": "City", "url": 'Url'})
+            df = df.append(file.filter(cols_of_interest, axis=1), ignore_index=True, sort=False)
+            df["Similarity"] = values[i]
+
+    df.reset_index(drop=True, inplace=True)
+    print(df.to_string())
+    return df
 

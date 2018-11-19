@@ -42,5 +42,5 @@ query = input()
 words = cleaning_of_data.remove_extras_from_query(query)
 
 result_items = search_engine_processing.run_cosine_similarity_tfidf_conjunctive_query(words, inverted_index_dic)
-df = writing_of_data.output_results(FOLDER_NAME_FOR_TSV_File, result_items)
-df
+df = writing_of_data.output_results_cosine_similarity(FOLDER_NAME_FOR_TSV_File, result_items)
+# df
