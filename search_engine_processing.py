@@ -2,13 +2,18 @@ import reading_of_data
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
 from collections import OrderedDict, defaultdict
+import heapq
 
 
 def cosine(v1, v2):
     v1 = np.array(v1)
     v2 = np.array(v2)
-
-    return np.dot(v1, v2) / (np.sqrt(np.sum(v1 ** 2)) * np.sqrt(np.sum(v2 ** 2)))
+    prodouct_of_both = np.dot(v1, v2)
+    square_root_of_v1 = np.sqrt(np.sum(v1 ** 2))
+    square_root_of_v2 = np.sqrt(np.sum(v2 ** 2))
+    prodcuct_of_square_root_of_both = (square_root_of_v1 * square_root_of_v2)
+    cosine_value = (prodouct_of_both / prodcuct_of_square_root_of_both)
+    return cosine_value
 
 
 def run_simple_conjunctive_query(words, inverted_index_items):
@@ -68,6 +73,7 @@ def run_cosine_similarity_tfidf_conjunctive_query(words, tdidf_inverted_index_it
         # I have to calculate the tdidf values for current sentence
         list_of_words = words
         voc_dic = reading_of_data.get_vocabulary_dic()  # get a dictionary from dictionary file
+        voc_items = " ".join(voc_dic.values())
         sentence = " ".join(list_of_words)  # joining the sentence to use it later
         tfidf = TfidfVectorizer()
         tfidf_scores = tfidf.fit_transform([sentence])
@@ -88,12 +94,12 @@ def run_cosine_similarity_tfidf_conjunctive_query(words, tdidf_inverted_index_it
 
         ordered_values = OrderedDict(sorted(cosine_similarity_dictionary.items(), key=lambda x: x[1]))
 
-        # ordered_values_reverse = {}
-        # for k, v in ordered_values.items():
-        #     ordered_values_reverse[v] = ordered_values_reverse.get(v, [])
-        #     ordered_values_reverse[v].append(k)
+        priority_queue = []
+        # priority queue
+        for key, value in ordered_values.items():
+            heapq.heappush(priority_queue,  (value * -1, key))
 
-    return ordered_values
+    return priority_queue
     # now we got the docs_ids which matched
 
 
@@ -117,27 +123,4 @@ def return_set_of_docs_from_tfidf_inverted_index_doc_item(items):
                 doc_ids.add(key)
     return doc_ids
 
-    # document_ids = run_simple_conjunctive_query(words, tdidf_inverted_index_items)
-    # tfidf = TfidfVectorizer()
-    # if document_ids is not None and len(document_ids) > 0:
-    #     for document_id in document_ids:
-    #         list_of_words = list(words)
-    #         query_scores = list()
-    #         document_scores = list()
-    #         voc_dic = reading_of_data.get_vocabulary_dic()  # get a dictionary from dictionary file
-    #         sentence = " ".join(list_of_words)  # joining the sentence to use it later
-    #         tfidf_scores = tfidf.fit_transform([sentence])
-    #         feature_names = tfidf.get_feature_names()
-    #         for col in tfidf_scores.nonzero()[1]:
-    #             word_item = feature_names[col]
-    #             tfidf_score = tfidf_scores[0, col]
-    #
-    #             # get term id from voc_dic
-    #             term_id = list(voc_dic.keys())[list(voc_dic.values()).index(word_item)]
-    #             if str(term_id) in tdidf_inverted_index_items:
-    #                 list_of_documents = tdidf_inverted_index_items[str(term_id)]
-    #                 if len(list_of_documents) > 0:
-    #                     for key, value in list(set(list_of_documents)):
-    #                         if key == document_id:
-    #
-    #                             break ;
+
