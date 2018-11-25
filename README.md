@@ -2,7 +2,7 @@
 
 This repository contains the Homework 3 of Algorithmic Methods of Data Mining Academic year 2018–2019 from group 4 formed by Valerio Antonini, Hafiz Muhammad Hassan and Francisca Alliende.
 
-Incoming, a summary of the files of this repository:
+Incoming, a summary of the files of this repository. To access the document, just press the link of the document name. 
 
 ### 1. **[Homework_3.ipynb](http://nbviewer.jupyter.org/github/valerio94w/ADM-Hw3-Group4/blob/master/Homework_3.ipynb)** 
 A Jupyter Notebook with the results of the analisys of Airbnb property listings and the search engines requested.
@@ -19,4 +19,3 @@ A Jupyter Notebook with the results of the analisys of Airbnb property listings 
 - **[inverted_index.json](https://github.com/valerio94w/ADM-Hw3-Group4/blob/master/inverted_index.json):** a json file that contains the inverted index created during the process of making the conjunctive query of the Section 3.1.
 - **[inverted_index_tfidf.json](https://github.com/valerio94w/ADM-Hw3-Group4/blob/master/inverted_index_tfidf.json):** a json file that contains the inverted index created during the process of making the conjunctive query & rnking score of the Section 3.2.
 - **[vocabulary.json](https://github.com/valerio94w/ADM-Hw3-Group4/blob/master/vocabulary.json):** a json file that contains the vocabulary, that maps each word in the database to an ID.
-
