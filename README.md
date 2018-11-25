@@ -4,6 +4,19 @@ This repository contains the Homework 3 of Algorithmic Methods of Data Mining Ac
 
 Incoming, a summary of the files of this repository:
 
-- **Homework_3.ipynb:** a Jupyter Notebook with the results of the analisys of Airbnb property listings and the search engines requested.
+### 1. **Homework_3.ipynb** 
+A Jupyter Notebook with the results of the analisys of Airbnb property listings and the search engines requested.
 
+### 2. **Functions files**:
+- **cleaning_of_data.py:** this file contains the necessary functions to clean the data, such as removing null values and irrelevant       characters, among others.
+- **writing of data
+- **reading_of_data.py:** this file contains the necessary functions to reading the files created in previous steps i.e. inverted_index.json, inverted_index_tfidf.json and vocabulary.json.
+- **search_engine.py:**
+- **search_engine_1.py:
+
+### 3. **Databases, inverted indexes and vocabulary:
+ - **Airbnb Texas Rentals.csv:** corresponds to the database used to make the analyzes and the serach engines
+- **inverted_index.json:** refers to the inverted index created during the process of making the conjunctive query of the Section 3.1.
+- **inverted_index_tfidf.json"** : refers to the inverted index created during the process of making the conjunctive query & rnking score of the Section 3.2.
+- **vocabulary.json* 
 
