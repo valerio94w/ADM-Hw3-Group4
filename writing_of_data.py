@@ -23,6 +23,7 @@ def create_vocabulary_file(df_length, folder_name, voc_file_name):
     # For every file...
     for i in range(df_length):
         doc = pd.read_csv(folder_name + '/doc_%s.tsv' % i, sep='\t')
+
         print("creating vocabulary ed index:" + str(i))
         # Concatenate the description and title in a string
         words = doc["description"][0] + doc["title"][0]
@@ -100,7 +101,7 @@ def output_results(folder_name, inter):
         inter = list(inter)
         cols_of_interest = ["Title", "Description", "City", "Url"]
         if len(inter) > 0:
-            doc_id = inter[0]
+            doc_id = int(inter[0])
             df = pd.read_csv(folder_name + "/doc_%s.tsv" % doc_id, sep="\t")
             df = df.rename(index=str,
                            columns={'title': 'Title',
@@ -109,7 +110,6 @@ def output_results(folder_name, inter):
         index += 1
         for i in range(1, len(inter)):
             doc_id = int(inter[i])
-            cols_of_interest = ["Title", "Description", "City", "Url"]
             file = pd.read_csv(folder_name + "/doc_%s.tsv" % doc_id, sep="\t")
             file = file.rename(index=str, columns={'title': 'Title',
                                                    "description": "Description", "city": "City", "url": 'Url'})
@@ -196,7 +196,7 @@ def output_results_cosine_similarity(folder_name, priority_queue):
 
         if df is not None:
             df.reset_index(drop=True, inplace=True)
-            print(df.to_string())
+            # print(df.to_string())
             return df
         else:
             return

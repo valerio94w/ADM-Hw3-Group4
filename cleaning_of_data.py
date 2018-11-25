@@ -28,14 +28,10 @@ def remove_extras_from_query(query):  # use all the techniques to remove unwante
     words = tokenizer.tokenize(words)
     # Stemming
     words = [ps.stem(word) for word in words]
-    # Keep only unique words
-    words = set(words)
     # Removing stopwords
     words = [word for word in words if word not in stopwords.words('english')]
     # No integers
     words = [x for x in words if not (x.isdigit() or x[0].isdigit())]
-    # Keep only unique words
-    words = set(words)
 
     return words
 
