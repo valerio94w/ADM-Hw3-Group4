@@ -4,6 +4,6 @@ This repository contains the Homework 3 of Algorithmic Methods of Data Mining Ac
 
 Incoming, a summary of the files of this repository:
 
-- Homework_3.ipynb: a Jupyter Notebook with the results of the analisys of Airbnb property listings and the search engines requested.
+- **Homework_3.ipynb:** a Jupyter Notebook with the results of the analisys of Airbnb property listings and the search engines requested.
 
 
