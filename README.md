@@ -4,7 +4,7 @@ This repository contains the Homework 3 of Algorithmic Methods of Data Mining Ac
 
 Incoming, a summary of the files of this repository:
 
-### 1. **Homework_3.ipynb** 
+### 1. **[Homework_3.ipynb](http://nbviewer.jupyter.org/github/valerio94w/ADM-Hw3-Group4/blob/master/Homework_3.ipynb)** 
 A Jupyter Notebook with the results of the analisys of Airbnb property listings and the search engines requested.
 
 ### 2. **Functions files**:
