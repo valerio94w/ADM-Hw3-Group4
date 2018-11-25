@@ -2,7 +2,7 @@
 
 This repository contains the Homework 3 of Algorithmic Methods of Data Mining Academic year 2018–2019 from group 4 formed by Valerio Antonini, Hafiz Muhammad Hassan and Francisca Alliende.
 
-Incoming, a summary of the files of this repository. To access the document, just press the link of the document name. 
+Incoming, a summary of the files of this repository. To access to a document just press the link in the name of the corresponding file.
 
 ### 1. **[Homework_3.ipynb](http://nbviewer.jupyter.org/github/valerio94w/ADM-Hw3-Group4/blob/master/Homework_3.ipynb)** 
 A Jupyter Notebook with the results of the analisys of Airbnb property listings and the search engines requested.
