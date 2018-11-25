@@ -14,9 +14,9 @@ A Jupyter Notebook with the results of the analisys of Airbnb property listings 
 - **search_engine.py:**
 - **search_engine_1.py:
 
-### 3. **Databases, inverted indexes and vocabulary:
- - **Airbnb Texas Rentals.csv:** corresponds to the database used to make the analyzes and the serach engines
-- **inverted_index.json:** refers to the inverted index created during the process of making the conjunctive query of the Section 3.1.
-- **inverted_index_tfidf.json"** : refers to the inverted index created during the process of making the conjunctive query & rnking score of the Section 3.2.
-- **vocabulary.json* 
+### 3. **Databases, inverted indexes and vocabulary:**
+- **Airbnb Texas Rentals.csv:** a csv file that corresponds to the database used to make the analyzes and the serach engines
+- **inverted_index.json:** a json file that contains the inverted index created during the process of making the conjunctive query of the Section 3.1.
+- **inverted_index_tfidf.json:** a json file that contains the inverted index created during the process of making the conjunctive query & rnking score of the Section 3.2.
+- **vocabulary.json:** a json file that contains the vocabulary, that maps each word in the database to an ID.
 
