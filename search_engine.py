@@ -33,7 +33,6 @@ df = cleaning_of_data.open_csv_file_and_remove_extra_values(CSV_FILE_NAME)
 
 # writing_of_data.create_tfidf_inverted_index_file(len(df), FOLDER_NAME_FOR_TSV_File, INVERTED_INDEX_TFIDF_FILE_NAME)
 
-
 # Now we have our inverted_index_tfidf file
 inverted_index_dic = reading_of_data.get_tfidf_inverted_index_file(INVERTED_INDEX_TFIDF_FILE_NAME)
 
